@@ -1,14 +1,19 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>
-      Ionic Blank
+      Demo Search
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <div class="ion-padding">
-    The world is your oyster.
-    <p>If you get lost, the <a target="_blank" rel="noopener" href="https://ionicframework.com/docs/">docs</a> will be your guide.</p>
-  </div>
+  <!-- searched bar -->
+  <ion-searchbar [(ngModel)]="searchInput" animated placeholder="Search Items" (ionInput)="getItems($event)">
+  </ion-searchbar>
+  <!-- list of item searched -->
+  <ion-list *ngFor="let item of newItems">
+    <ion-item>{{item?.value}}</ion-item>
+  </ion-list>
+  <!-- searched item not found -->
+  <div class="error-msg" *ngIf="newItems.length <= 0">No Products Available</div>
 </ion-content>
